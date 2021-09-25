@@ -1,10 +1,10 @@
-## This repor contain Deep Learning released codes
+## This repo contain Deep Learning released codes
 
 
 
 ## How to use this
 
-- Each Folder contains weekly lectures notes and releasted python code, 
+- Each Folder contains weekly lectures notes and related python codes,assignments,projects 
 
 # Reference -
 [official python docs](https://packaging.python.org/tutorials/packaging-projects/)
