@@ -20,6 +20,10 @@ def save_model(model, filename):
   filePath = os.path.join(model_dir, filename) # model/filename
   joblib.dump(model, filePath)
 
+def load_model(predict_input,model_filename):
+    loaded_model = joblib.load("models/"+model_filename)
+    loaded_model.predict(predict_input)
+
 def save_plot(df, file_name, model):
       #Function inside the function-it is local function- we can use internally(kind of protected)
     def _create_base_plot(df):  # Responsible for printing the data points
