@@ -19,7 +19,7 @@ def training(config_path):
     os.makedirs(log_dir_path, exist_ok=True)
     log_name = config["logs"]["log_name"]
     path_to_log = os.path.join(log_dir_path, log_name)
-    logging.basicConfig(filename=path_to_log, filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename=path_to_log, filemode='w', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
     logging.warning('This will get logged to a file')
     validation_datasize = config["params"]["validation_datasize"]
     (X_train, y_train), (X_valid, y_valid), (X_test, y_test) = get_data(validation_datasize)

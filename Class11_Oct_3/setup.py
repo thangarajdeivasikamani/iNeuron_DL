@@ -23,5 +23,6 @@ setup(
         "seaborn",
         "numpy",
         "pandas"
+        "PyYAML"
     ]
 )
