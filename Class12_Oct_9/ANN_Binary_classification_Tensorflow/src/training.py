@@ -107,7 +107,7 @@ def training(config_path):
     #Predict with new customer value
     new_customer = [[619,0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]]
     x_new = scale_predict_data(X_train_full,new_customer)
-    y_pred= predict(model,X_test) 
+    y_pred= predict(model,x_new) 
     print("New Predicted value is",y_pred)
     # Load from Check point 
     #Here we can see the accuracy started from last stopped training accuracy(Means use last best weight)

@@ -66,7 +66,7 @@ def predict(model,X_new):
     y_pred = model.predict(X_new)
     return y_pred
 
-def model_performance(y_test,y_pred):
+def model_performance(y_test,y_pred):    
     print('MAE:', metrics.mean_absolute_error(y_test, y_pred))  
     print('MSE:', metrics.mean_squared_error(y_test, y_pred))  
     print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
@@ -75,4 +75,4 @@ def model_performance(y_test,y_pred):
     logging.info('MSE: %s', metrics.mean_squared_error(y_test, y_pred))  
     logging.info('RMSE: %s', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
     logging.info('VarScore: %s',metrics.explained_variance_score(y_test,y_pred))
-
+    return (np.sqrt(metrics.mean_squared_error(y_test, y_pred)))

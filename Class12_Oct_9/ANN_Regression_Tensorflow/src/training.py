@@ -107,7 +107,7 @@ def training(config_path):
     #Predict with new customer value
     new_house = [[3,1,1180,5650,1,0,0,3,7,1180,0,1955,0,47.5112,-122.257,1340,5650]]
     x_new = scale_predict_data(X_train_full,new_house)
-    y_pred= predict(model,X_test) 
+    y_pred= predict(model,x_new) 
     logging.info(f"New Predicted value is:{y_pred}")
     print("New Predicted value is",y_pred)
     # Load from Check point 
