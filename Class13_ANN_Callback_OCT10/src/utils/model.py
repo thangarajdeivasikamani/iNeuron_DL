@@ -7,7 +7,7 @@ import logging
 import numpy as np
 
 def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES):
-
+    #if we flatten 28 x 28 will get 784 input layer
     LAYERS = [tf.keras.layers.Flatten(input_shape=[28, 28], name="inputLayer"),
           tf.keras.layers.Dense(300, activation="relu", name="hiddenLayer1"),
           tf.keras.layers.Dense(100, activation="relu", name="hiddenLayer2"),

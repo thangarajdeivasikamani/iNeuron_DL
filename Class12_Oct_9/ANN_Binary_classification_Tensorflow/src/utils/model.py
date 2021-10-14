@@ -5,13 +5,14 @@ import io
 import matplotlib.pyplot as plt
 import logging
 import numpy as np
+from sklearn.metrics import confusion_matrix
 
-def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES):
-    # 28 x 28 if we flatten we will get 784 input neuron
-    LAYERS = [tf.keras.layers.Flatten(input_shape=[28, 28], name="inputLayer"),
-          tf.keras.layers.Dense(300, activation="relu", name="hiddenLayer1"),
-          tf.keras.layers.Dense(100, activation="relu", name="hiddenLayer2"),
-          tf.keras.layers.Dense(NUM_CLASSES, activation="softmax", name="outputLayer")]
+def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS):
+
+    LAYERS = [tf.keras.layers.Dense(units=12, name="inputLayer",input_dim=12),
+          tf.keras.layers.Dense(6, activation="relu", name="hiddenLayer1"),
+          tf.keras.layers.Dense(6, activation="relu", name="hiddenLayer2"),
+          tf.keras.layers.Dense(units = 1, activation="sigmoid", name="outputLayer")]
 
     model_clf = tf.keras.models.Sequential(LAYERS)
 
@@ -61,6 +62,11 @@ def evaluate(model,X_test, y_test):
     logging.info(model.evaluate(X_test,y_test))
 
 def predict(model,X_new):
-    y_prob = model_clf.predict(X_new)
-    logging.info(y_prob.round(3))
-    logging.info(Y_pred= np.argmax(y_prob, axis=-1))
+    y_pred = model.predict(X_new)
+    y_pred = (y_pred > 0.5)
+    return y_pred
+
+def model_performance(y_test,y_pred):
+    cm = confusion_matrix(y_test, y_pred)
+    logging.info(cm)
+    return cm
