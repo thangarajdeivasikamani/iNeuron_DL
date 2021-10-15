@@ -14,7 +14,7 @@ def get_data(validation_datasize,test_size_value,random_state):
     dataset_df = dataset_df.drop('zipcode',axis=1)
     # Split the data X and Y
     X = dataset_df.drop('price',axis =1).values
-    logging.info("x_shape:",X.shape)
+    logging.info(f"x_shape:{X.shape}")
     y = dataset_df['price'].values
     # Trian and Test split
     X_train_full, X_test, y_train_full, y_test = train_test_split(X, y, test_size = test_size_value, random_state = random_state)

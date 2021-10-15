@@ -6,7 +6,7 @@ from src.utils.model import save_plot
 from src.utils.common import read_config
 from src.utils.data_management import get_data,scale_predict_data
 from src.utils.model import create_model, get_unique_filename,save_model,get_model_summary,\
-    save_summary,evaluate,predict,model_performance
+    save_summary,evaluate,predict,model_performance,model_score
 import logging
 import tensorflow as tf
 import numpy as np
@@ -67,7 +67,8 @@ def training(config_path):
     save_summary(model_summary_string,summary_file_name,summary_dir_path)
     #Create the callbacks
     tensorboard_cb = tf.keras.callbacks.TensorBoard(log_dir=path_to_tensorboard_log)
-    early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True)
+    #https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-the-right-time-using-early-stopping/
+    early_stopping_cb = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', mode='max', min_delta=1,  baseline=0.4,restore_best_weights=True)
     # Create the check point
     ckpt_dir =config["artifacts"]["checkpoint_dir"] 
     ckpt_dir_path = os.path.join(artifacts_dir, ckpt_dir)
@@ -99,8 +100,11 @@ def training(config_path):
     save_plot(history_dataframe, plot_name, plot_dir_path)
     #evaluate the model
     evaluate(model,X_test,y_test)
-    
+    score,acc = model_score(model,X_train, y_train)
+    print("Training score:",score)
+    print("Training accuracy:",acc)
     y_pred= predict(model,X_test) 
+  
     performance = model_performance(y_test,y_pred)
     print("model_performance :", performance)
 

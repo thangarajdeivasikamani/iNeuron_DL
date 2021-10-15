@@ -10,8 +10,8 @@ from sklearn import metrics
 def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS):
     # Prediction so last layer relu- output the same value
     LAYERS = [tf.keras.layers.Dense(units=17, name="inputLayer",input_dim=17),
-          tf.keras.layers.Dense(10, activation="relu", name="hiddenLayer1"),
-          tf.keras.layers.Dense(5, activation="relu", name="hiddenLayer2"),
+          tf.keras.layers.Dense(17, activation="relu", name="hiddenLayer1"),
+          tf.keras.layers.Dense(17, activation="relu", name="hiddenLayer2"),
           tf.keras.layers.Dense(units = 1, activation="relu", name="outputLayer")]
 
     model_clf = tf.keras.models.Sequential(LAYERS)
@@ -65,6 +65,12 @@ def evaluate(model,X_test, y_test):
 def predict(model,X_new):
     y_pred = model.predict(X_new)
     return y_pred
+
+def model_score(model,X_train, y_train):
+    score,acc = model.evaluate(X_train, y_train)
+    logging.info(f"Training Score:{score}")
+    logging.info(f"Training Acc:{acc}")
+    return score,acc
 
 def model_performance(y_test,y_pred):    
     print('MAE:', metrics.mean_absolute_error(y_test, y_pred))  
