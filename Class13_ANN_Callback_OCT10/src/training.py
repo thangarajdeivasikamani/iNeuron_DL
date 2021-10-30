@@ -2,6 +2,8 @@
 import argparse
 import os
 import pandas as pd
+from src.utils.log_mgmt import logging_dir
+from src.utils.callbacks import get_callbacks
 from src.utils.model import save_plot
 from src.utils.common import read_config
 from src.utils.data_mgmt import get_data
@@ -17,36 +19,12 @@ def training(config_path):
     #Read the config file
     config = read_config(config_path)
     #Constrcut the logging directory
-    log_dir = config["logs"]["logs_dir"]
-    general_log_dir = config["logs"]["general_logs"]
-    log_dir_path = os.path.join(log_dir, general_log_dir)
-    os.makedirs(log_dir_path, exist_ok=True)
-    log_name = config["logs"]["log_name"]
-    path_to_log = os.path.join(log_dir_path, log_name)
-    logging.basicConfig(filename=path_to_log, filemode='w', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
-    logging.warning('This will get logged to a file')
+    log_dir=logging_dir(config)
     # Get the dataset
+    CKPT_path = "model_ckpt.h5"
     validation_datasize = config["params"]["validation_datasize"]
     (X_train, y_train), (X_valid, y_valid), (X_test, y_test) = get_data(validation_datasize)
-    #Visuvalize the data using tensorflowboard
-    tensorboard_logs_dir = config["logs"]["tensorboard_logs"]
-    tensorboard_log_dir_path = os.path.join(log_dir, tensorboard_logs_dir)
-    os.makedirs(tensorboard_log_dir_path, exist_ok=True)
-    tensorboard_log_name = config["logs"]["tensorboard_logs_name"]
-    unique_tensorboard_log_name = get_unique_filename(tensorboard_log_name)
-    path_to_tensorboard_log = os.path.join(tensorboard_log_dir_path, unique_tensorboard_log_name)
-    logging.info(f"savings logs at: {path_to_tensorboard_log}")
-    print(path_to_tensorboard_log)
-    #Create the file write
-    file_writer = tf.summary.create_file_writer(logdir=path_to_tensorboard_log)
-    # Call the file_writer using with command like file open
-    with file_writer.as_default():
-    # Here we passing the image b/w 10 to 30  image & the reshape size we can dynamically adjust based on 
-    # given input input 10,20 images ,so we will give -1 based on input image will adjust, last one is define for dimention(Grey scale)
-        images = np.reshape(X_train[10:30], (-1, 28, 28, 1)) ### <<< 20, 28, 28, 1
-        tf.summary.image("20 handritten digit samples", images, max_outputs=25, step=0)
-    #Call the Tensorboard
-    tf.keras.callbacks.TensorBoard(log_dir=path_to_tensorboard_log)
+    CALLBACKS_LIST=get_callbacks(config, X_train,log_dir,CKPT_path)
     #  Create the model
     LOSS_FUNCTION = config["params"]["loss_function"]
     OPTIMIZER = config["params"]["optimizer"]
@@ -63,13 +41,8 @@ def training(config_path):
     os.makedirs(summary_dir_path, exist_ok=True)
     summary_file_name = config["artifacts"]["summary_name"]
     save_summary(model_summary_string,summary_file_name,summary_dir_path)
-    #Create the callbacks
-    tensorboard_cb = tf.keras.callbacks.TensorBoard(log_dir=path_to_tensorboard_log)
-    early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True)
-    # Create the check point
-    CKPT_path = "model_ckpt.h5"
-    checkpointing_cb = tf.keras.callbacks.ModelCheckpoint(CKPT_path, save_best_only=True)
-    CALLBACKS_LIST = [tensorboard_cb, early_stopping_cb, checkpointing_cb]
+   
+  
 
     EPOCHS = config["params"]["epochs"]
     VALIDATION_SET = (X_valid, y_valid)

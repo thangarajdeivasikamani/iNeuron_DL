@@ -8,7 +8,7 @@ USER_NAME = "thangarajdeivasikamani"
 
 setup(
     name="src",
-    version="0.0.1",
+    version="0.0.2",
     author="Thangaraj",
     description="A small package for ANN Implementation",
     long_description=long_description,
@@ -23,6 +23,6 @@ setup(
         "seaborn",
         "numpy",
         "pandas"
-        "PyYAML"
+        
     ]
 )
