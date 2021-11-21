@@ -1,0 +1,41 @@
+params:
+  epochs: 10
+  batch_size: 128
+  num_classes: 10
+  loss_function: sparse_categorical_crossentropy
+  metrics: accuracy
+  optimizer: SGD
+  validation_datasize: 5000
+  learning_rate : '1e-3'
+  binary_loss_function : binary_crossentropy
+
+
+artifacts:
+
+  artifacts_dir: artifacts
+  summary_dir : summary
+  model_dir: model
+  plots_dir: plots
+  checkpoint_dir: checkpoints
+  model_name: base_model.h5
+  plot_name: plot.png
+  summary_name: model_summary.txt
+  ckpt_name: model_ckpt.h5 
+  even_odd_model_name: even_odd_model.h5
+  greater_less_model_name: greater_less_model.h5
+
+logs:
+  logs_dir: logs_dir
+  general_logs: general_logs
+  tensorboard_logs: tensorboard_logs
+  log_name: app.log
+  tensorboard_logs_name: tensorboard_log
+
+  
+# we can use Json also intead of yaml
+# How to check in python envoriment
+#import yaml
+#from src.utils.common  import read_config
+# read_config("config.yaml") 
+# we will get like dict
+# It will call common.py internally if we call read_config

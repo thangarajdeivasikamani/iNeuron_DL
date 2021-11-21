@@ -1,4 +1,0 @@
-How to train the model in code collab and predict from local machine?
-Upload the folder into drive and Mount the driver
-
-Install the required dependecy file & excute

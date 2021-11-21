@@ -1,0 +1,31 @@
+params:
+  epochs: 100
+  batch_size: 10
+  loss_function: binary_crossentropy
+  metrics: accuracy
+  optimizer: SGD
+  validation_datasize: 1000
+  n_splits: 3
+  seeds: 7
+
+
+artifacts:
+
+  artifacts_dir: artifacts
+  summary_dir : summary
+  model_dir: model
+  plots_dir: plots
+  checkpoint_dir: checkpoints
+  model_name: model.h5
+  plot_name: plot.png
+  summary_name: model_summary.txt
+  ckpt_name: model_ckpt.h5 
+
+logs:
+  logs_dir: logs_dir
+  general_logs: general_logs
+  tensorboard_logs: tensorboard_logs
+  log_name: app.log
+  tensorboard_logs_name: tensorboard_log
+
+  
