@@ -8,7 +8,7 @@ from src.utils.data_mgmt import get_data,update_greater_less_than_5
 from src.utils.model import create_model,save_model,get_model_summary,save_summary,evaluate
 import logging
 import tensorflow as tf
-
+import numpy as np
 import time
 
 def training(config_path):
@@ -22,7 +22,7 @@ def training(config_path):
     os.makedirs(log_dir_path, exist_ok=True)
     log_name = config["logs"]["log_name"]
     path_to_log = os.path.join(log_dir_path, log_name)
-    logging.basicConfig(filename=path_to_log, filemode='w', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
+    logging.basicConfig(filename=path_to_log, filemode='a', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
     logging.info('----------------------------------------------------------------------')
     start = time.time()  
     logging.info(f"Tensorflow Version: {tf.__version__}")
@@ -32,7 +32,11 @@ def training(config_path):
      # Get the dataset
     validation_datasize = config["params"]["validation_datasize"]
     (X_train, y_train), (X_valid, y_valid), (X_test, y_test) = get_data(validation_datasize)
-    
+    ## set the seeds
+    seed = config["params"]["SEED"]   ## get it from config
+    tf.random.set_seed(seed)
+    np.random.seed(seed)
+
     y_train_bin, y_test_bin, y_valid_bin = update_greater_less_than_5([y_train, y_test, y_valid])
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
@@ -64,7 +68,7 @@ def training(config_path):
         tf.keras.layers.Dense(1, activation="sigmoid", name="output_layer")
     )
    #log new model Summary info into logging
-    logging.info(f"New model summary: \n{get_model_summary(new_model)}")
+    logging.info(f"GreaterThan and Less Than model summary: \n{get_model_summary(new_model)}")
     ## Train the model
     LOSS_FUNCTION = config["params"]["binary_loss_function"]
     OPTIMIZER = tf.keras.optimizers.SGD(learning_rate=1e-3)

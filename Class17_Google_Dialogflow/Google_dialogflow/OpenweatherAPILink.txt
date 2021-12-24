@@ -1,0 +1,14 @@
+open page:https://dialogflow.cloud.google.com/#/agent/firstbot-rwug/intents
+
+
+https://openweathermap.org/api
+
+
+Subscribe - Give username & password-
+
+Get the API key
+
+
+Working chapbot:
+
+https://t.me/sunny6_chatbot

@@ -1,0 +1,18 @@
+{
+  "name": "MLflow CICD Notebook New Cluster",
+  "new_cluster": {
+    "spark_version": "6.4.x-cpu-ml-scala2.11",
+    "node_type_id": "i3.xlarge",
+    "num_workers": 1
+  },
+  "notebook_task": {
+    "notebook_path": "/Users/john.doe@acme.com/tmp/mlflow_cicd/Sklearn_Train_Predict",
+    "base_parameters": {
+       "Experiment Name": "/Users/john.doe@acme.com/tmp/mlflow_cicd/Sklearn_Train_Predict_exp",
+       "Run Name": "MLflow CICD Notebook Existing Cluster",
+       "Scratch Dir": "dbfs:/john.doe@acme.com/tmp/mlflow_cicd/job_run",
+       "Max Depth": 8
+    }
+  },
+  "timeout_seconds": 3600
+}

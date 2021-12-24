@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/MachineLearning/iNeuron_DL/Class24_ML_Flow/mlflow-examples-master/python/sklearn/wine_quality/mlruns/0/de83bf439e7a40548396a78ba50c9b31/artifacts
+end_time: 1638121692994
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: de83bf439e7a40548396a78ba50c9b31
+run_uuid: de83bf439e7a40548396a78ba50c9b31
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1638121689108
+status: 3
+tags: []
+user_id: Sushil

@@ -6,7 +6,9 @@ import matplotlib.pyplot as plt
 import logging
 import numpy as np
 
-def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS,LEARNING_RATE):
+def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS,LEARNING_RATE,SEED):
+    tf.random.set_seed(SEED)
+    np.random.seed(SEED)
     #if we flatten 28 x 28 will get 784 input layer
     LAYERS = [
             tf.keras.layers.Flatten(input_shape=[28,28], name="inputlayer"),

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/MachineLearning/iNeuron_DL/Class24_ML_Flow/mlflow_self/Hello_word/mlruns/0/2f3771e9c3b846aca11ea83ad674c528/artifacts
+end_time: 1637946071874
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 2f3771e9c3b846aca11ea83ad674c528
+run_uuid: 2f3771e9c3b846aca11ea83ad674c528
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1637946071829
+status: 3
+tags: []
+user_id: Sushil

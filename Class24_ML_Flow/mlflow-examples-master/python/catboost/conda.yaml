@@ -1,0 +1,13 @@
+name: mlflow-examples-catboost
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7.6
+  - pip:
+    - mlflow>=1.17.0
+    - catboost==0.25.1
+    - scikit-learn==0.24.2
+    - pyarrow>=1.0.0
+    - onnx==1.9.0
+    - onnxmltools==1.7.0
+    - onnxruntime==1.7.0

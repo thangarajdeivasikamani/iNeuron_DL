@@ -1,0 +1,4 @@
+artifact_location: file:///C:/MachineLearning/iNeuron_DL/Class24_ML_Flow/mlflow-examples-master/python/sklearn/wine_quality/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: sklearn

@@ -21,7 +21,7 @@ def training(config_path):
     os.makedirs(log_dir_path, exist_ok=True)
     log_name = config["logs"]["log_name"]
     path_to_log = os.path.join(log_dir_path, log_name)
-    logging.basicConfig(filename=path_to_log, filemode='w', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
+    logging.basicConfig(filename=path_to_log, filemode='a', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
     logging.info('----------------------------------------------------------------------')
     start = time.time()  
     logging.info(f"Tensorflow Version: {tf.__version__}")
@@ -38,7 +38,8 @@ def training(config_path):
     OPTIMIZER = config["params"]["optimizer"]
     LEARNING_RATE = config["params"]["learning_rate"]
     METRICS = config["params"]["metrics"]
-    model = create_model(LOSS_FUNCTION, OPTIMIZER, METRICS,LEARNING_RATE)
+    SEEDS = config["params"]["SEED"]    
+    model = create_model(LOSS_FUNCTION, OPTIMIZER, METRICS,LEARNING_RATE,SEEDS)
 
     ## log our model summary information in logs
     model_summary_string = get_model_summary(model)
@@ -85,6 +86,7 @@ def training(config_path):
     logging.info(elapsed)
     logging.info(f"Based Model end Time: {end}")
     logging.info(f"Based Model execution Time: {elapsed}")
+
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     # we can add help also
