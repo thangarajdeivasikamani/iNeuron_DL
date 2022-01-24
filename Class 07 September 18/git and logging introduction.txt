@@ -1,0 +1,33 @@
+http://www.bioinf.org.uk/teaching/splats/git.pdf
+https://www.ncyu.edu.tw/files/site_content/cc/1010531git.pdf
+
+
+Doc string:
+
+Install the doc string in the Vs code market place
+
+Two way of writing the doc string
+
+Vs code:
+
+
+  """It is used to separate the dependent variable and independent variables
+
+  Args:
+      df (pd.DataFrame): input the csv file
+
+  Returns:
+      tuple: it will return tuple of dependent and independent variable
+  """
+
+
+pycharm:
+
+ """
+  :param df: it a dataframe
+  :param filename:it's path to save the plot
+  :param model: trained model
+  
+  """
+
+How to run jupter notebook in vs code?
