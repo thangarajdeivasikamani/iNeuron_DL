@@ -1,0 +1,11 @@
+
+
+Reference : 
+
+When ever we build the network we need to compare with these network
+
+https://www.image-net.org/
+https://www.image-net.org/challenges/LSVRC/index.php
+https://www.kaggle.com/c/imagenet-object-localization-challenge/overview
+
+github.com/aleju/imgaug
